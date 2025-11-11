@@ -172,3 +172,24 @@ li + li {
     height: 150px;
   }
 }
+
+/* --- Theme toggle button --- */
+.theme-toggle {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  background: transparent;
+  border: 1px solid var(--text-muted);
+  border-radius: 6px;
+  padding: 5px 9px;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  z-index: 999;
+}
+
+.theme-toggle:hover {
+  background: var(--text-muted);
+  color: var(--bg);
+}
