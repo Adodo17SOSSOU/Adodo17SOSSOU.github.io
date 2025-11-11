@@ -6,6 +6,27 @@
   --max-width: 820px;
 }
 
+/* DARK MODE automatically when user prefers dark */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-main: #e5e7eb;
+    --text-muted: #9ca3af;
+    --bg: #0a0a0a;
+    --link: #93c5fd;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text-main);
+  }
+  a:hover {
+    text-decoration: underline;
+    color: #bfdbfe;
+  }
+  .profile-photo {
+    border-color: #444;
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
