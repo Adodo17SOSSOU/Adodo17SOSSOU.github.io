@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Apelete Adodo Sossou – Machine Learning Research Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Personal website of Apelete Adodo Sossou, Machine Learning Research Engineer (MVA – ENS Paris-Saclay) focusing on deep learning, spatio-temporal modeling and AI for health."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0a1020;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.08);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.2);
+      --card-radius: 18px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.6);
+      --chip-bg: rgba(15, 23, 42, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: conic-gradient(
+        from 190deg,
+        #4f46e5,
+        #22c55e,
+        #06b6d4,
+        #4f46e5
+      );
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: radial-gradient(circle at 20% 0%, #0b1120, #020617);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5e7eb;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .brand-text-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-text-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 0.85rem;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: 999px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(148, 163, 184, 0.14);
+      color: #f9fafb;
+    }
+
+    /* Layout */
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+      gap: 22px;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Cards */
+    .card {
+      background: linear-gradient(
+          135deg,
+          rgba(148, 163, 184, 0.02),
+          rgba(15, 23, 42, 0.95)
+        ),
+        radial-gradient(circle at top left, rgba(79, 70, 229, 0.12), transparent 55%);
+      border-radius: var(--card-radius);
+      padding: 20px 20px 18px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+    }
+
+    .card + .card {
+      margin-top: 14px;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    /* Hero */
+    .hero-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .hero-highlight {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 10px;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: var(--chip-bg);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #e5e7eb;
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+    }
+
+    .hero-description {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      font-size: 0.82rem;
+      border-radius: 999px;
+      padding: 7px 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease,
+        border-color 0.12s ease;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at top, #4f46e5, #1d4ed8);
+      color: #f9fafb;
+      box-shadow: 0 16px 30px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 35px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-muted);
+      border-color: rgba(148, 163, 184, 0.5);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
+    }
+
+    .hero-meta {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .timeline-item {
+      border-radius: 12px;
+      padding: 10px 11px;
+      background: radial-gradient(
+        circle at left,
+        var(--accent-soft),
+        rgba(15, 23, 42, 0.96)
+      );
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .timeline-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 4px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-title {
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .timeline-location {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .timeline-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: #e5e7eb;
+    }
+
+    .text-small {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .text-small strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    /* Lists */
+    .bullet-list {
+      margin-top: 4px;
+      padding-left: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .bullet-list li + li {
+      margin-top: 4px;
+    }
+
+    /* Two-column small sections */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill {
+      font-size: 0.72rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* Links / footer */
+    a {
+      color: #a5b4fc;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.8rem;
+      margin-top: 6px;
+    }
+
+    .link-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: #e5e7eb;
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+
+    .link-chip span {
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    .footer span {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="navbar">
+      <div class="nav-brand">
+        <div class="avatar-circle">
+          <div class="avatar-inner">AS</div>
+        </div>
+        <div>
+          <div class="brand-text-title">Apelete Adodo Sossou</div>
+          <div class="brand-text-sub">ML Research Engineer · MVA – ENS Paris-Saclay</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a class="nav-link" href="#education">Education</a>
+        <a class="nav-link" href="#research">Research</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#leadership">Leadership</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- LEFT COLUMN -->
+      <section>
+        <div class="card">
+          <h2 class="section-title">Profile</h2>
+          <div class="hero-title">Machine Learning Research Engineer</div>
+          <div class="hero-subtitle">
+            <span class="hero-highlight">
+              M.Sc. Mathematics, Vision, Learning (MVA), ENS Paris-Saclay / Université Paris Cité
+            </span>
+            &nbsp;· AI for health, neuroscience & social impact
+          </div>
+
+          <div class="hero-tags">
+            <div class="chip">
+              <span class="chip-dot"></span> Deep Learning & 3D Medical Imaging
+            </div>
+            <div class="chip">Spatio-temporal & probabilistic modeling</div>
+            <div class="chip">Self-supervised learning</div>
+          </div>
+
+          <p class="hero-description">
+            I am a Machine Learning Engineer and researcher focusing on
+            <strong>deep learning, spatio-temporal models</strong> and
+            <strong>medical imaging</strong>. My recent work at Télécom Paris
+            explores Alzheimer’s disease progression using self-supervised 3D encoders
+            and probabilistic longitudinal models. I am passionate about
+            <strong>AI for health</strong>, neuroscience, and building reproducible research pipelines
+            that bridge theory and real-world impact.
+          </p>
+
+          <div class="hero-cta-row">
+            <a href="#contact" class="btn-primary">
+              Get in touch for PhD / research opportunities →
+            </a>
+            <!-- Optional: once you upload cv.pdf to the repo, this link will work -->
+            <a href="./cv.pdf" class="btn-secondary">
+              Download CV (PDF)
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div><strong>Location:</strong> Épinay-sur-Seine, France</div>
+            <div><strong>Email:</strong> apeleteadodosossou9@gmail.com</div>
+          </div>
+        </div>
+
+        <div class="card" id="education">
+          <h2 class="section-title">Education</h2>
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="timeline-meta">
+                <span>2024 – 2025</span>
+                <span>Paris, France</span>
+              </div>
+              <div class="timeline-title">
+                M2 – Mathematics, Vision, Learning (MVA)
+              </div>
+              <div class="timeline-location">
+                ENS Paris-Saclay / Université Paris Cité · Distinction
+              </div>
+              <p class="text-small">
+                Core courses: Deep Learning, Reinforcement Learning, Convex Optimization,
+                Biostatistics, Computer Vision & Medical Imaging.  
+                <strong>GPA: 15.10/20 (High honours)</strong> ·
+                Paris Artificial Intelligence Research Institute Excellence Scholarship (€10,000).
+              </p>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-meta">
+                <span>2023 – 2024</span>
+                <span>Paris, France</span>
+              </div>
+              <div class="timeline-title">M1 – Computer Science</div>
+              <div class="timeline-location">
+                Université Sorbonne Paris Nord (Institut Galilée) · Distinction
+              </div>
+              <p class="text-small">
+                1st semester GPA: 16.01/20 – rank 1/50.  
+                Overall GPA: 15.29/20 – rank 5/50.  
+                Graduate School Excellence Scholarship (€12,000).
+              </p>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-meta">
+                <span>2021 – 2022</span>
+                <span>Fès, Morocco</span>
+              </div>
+              <div class="timeline-title">
+                Engineering Cycle (Year 1) – Computer Science
+              </div>
+              <div class="timeline-location">
+                National School of Applied Sciences (ENSA Fès) · Distinction
+              </div>
+              <p class="text-small">
+                GPA: 16.49/20 – rank 1/59.  
+                Fully funded by the Togolese government and AMCI.
+              </p>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-meta">
+                <span>2019 – 2021</span>
+                <span>Fès, Morocco</span>
+              </div>
+              <div class="timeline-title">
+                Preparatory Classes – Mathematics, CS & Physics
+              </div>
+              <div class="timeline-location">ENSA Fès</div>
+              <p class="text-small">
+                Intensive training in advanced mathematics, algorithms and physics.  
+                Ranked 28/280 (1st year) and 9/261 (2nd year).
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <div class="card" id="projects">
+          <h2 class="section-title">Selected Technical Projects</h2>
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="timeline-meta">
+                <span>Speech & Robustness</span>
+                <span>Python · PyTorch</span>
+              </div>
+              <div class="timeline-title">Accented English ASR Benchmark</div>
+              <p class="text-small">
+                Built a full evaluation pipeline for Whisper and Wav2Vec 2.0 on
+                French-accented English (Mozilla Common Voice), fully automated using
+                Python, PyTorch, Hugging Face and Slurm.
+              </p>
+              <ul class="bullet-list">
+                <li>Achieved WER 0.218 vs 0.328 baseline.</li>
+                <li>End-to-end scripts for preprocessing, training, evaluation and reporting.</li>
+              </ul>
+              <div class="timeline-badges">
+                <span class="badge">ASR</span>
+                <span class="badge">Robustness</span>
+                <span class="badge">HPC</span>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-meta">
+                <span>Medical Speech</span>
+                <span>Whisper</span>
+              </div>
+              <div class="timeline-title">Medical Domain ASR Benchmark</div>
+              <p class="text-small">
+                Collected and evaluated ASR models on radiology, pathology and surgery datasets,
+                reaching near-zero WER with Whisper in specialized contexts.
+              </p>
+              <div class="timeline-badges">
+                <span class="badge">Healthcare</span>
+                <span class="badge">NLP</span>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-meta">
+                <span>Time Series</span>
+                <span>Python</span>
+              </div>
+              <div class="timeline-title">Real-Time Anomaly Detection & Forecasting</div>
+              <p class="text-small">
+                Developed a streaming analysis pipeline for time-series systems with automated
+                data generation, forecasting and visualization.
+              </p>
+              <ul class="bullet-list">
+                <li>Implemented Z-score-based detection and ARIMA forecasting.</li>
+                <li>Designed dashboards to monitor and interpret anomalies.</li>
+              </ul>
+              <div class="timeline-badges">
+                <span class="badge">Time-Series</span>
+                <span class="badge">Streaming</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN -->
+      <section>
+        <div class="card" id="research">
+          <h2 class="section-title">Research & Internships</h2>
+          <div class="timeline">
+            <article class="timeline-item">
+              <div class="timeline-meta">
+                <span>May – Aug 2025</span>
+                <span>Paris, France</span>
+              </div>
+              <div class="timeline-title">
+                Master’s Thesis – Télécom Paris (IP Paris)
+              </div>
+              <div class="timeline-location">
+                Spatio-Temporal Modeling of Alzheimer’s Disease Progression · Supervisor: Prof. Pietro Gori
+              </div>
+              <ul class="bullet-list">
+                <li>Developed a 3D self-supervised encoder for brain MRI
+                    (masked inpainting + contrastive learning).</li>
+                <li>Designed probabilistic longitudinal models
+                    (state-space models, Gaussian Processes) for disease trajectories.</li>
+                <li>Built a normative scoring and subject-level risk prediction framework
+                    with a fully reproducible PyTorch/HPC pipeline (Slurm, bootstrap CI,
+                    explainability).</li>
+              </ul>
+              <div class="timeline-badges">
+                <span class="badge">3D MRI</span>
+                <span class="badge">Self-supervised</span>
+                <span class="badge">Gaussian Processes</span>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-meta">
+                <span>May – Jun 2024</span>
+                <span>Paris, France</span>
+              </div>
+              <div class="timeline-title">Research Internship – LaMSN</div>
+              <div class="timeline-location">
+                Sorbonne Paris Nord University
+              </div>
+              <p class="text-small">
+                Implemented and evaluated pruning techniques from the literature
+                to optimize neural network efficiency and inference time.
+              </p>
+              <div class="timeline-badges">
+                <span class="badge">Model Compression</span>
+                <span class="badge">Efficiency</span>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-meta">
+                <span>Feb – Apr 2024</span>
+                <span>Paris, France</span>
+              </div>
+              <div class="timeline-title">
+                Research Initiation – 3D Brain Tumor Segmentation
+              </div>
+              <div class="timeline-location">
+                Sorbonne Paris Nord University · Under Prof. Matei Basarab
+              </div>
+              <ul class="bullet-list">
+                <li>Studied and implemented 3D brain tumor segmentation networks
+                    (Dilated FCN).</li>
+                <li>Applied class-rebalancing and data-augmentation strategies.</li>
+                <li>Delivered a comprehensive research report and experimental analysis.</li>
+              </ul>
+              <div class="timeline-badges">
+                <span class="badge">Computer Vision</span>
+                <span class="badge">Medical Imaging</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title">Skills & Certifications</h2>
+          <div class="grid-2" style="margin-bottom: 10px;">
+            <div>
+              <p class="text-small"><strong>AI & Data Science</strong></p>
+              <div class="pill-row">
+                <span class="pill">Deep Learning (3D/CV/NLP)</span>
+                <span class="pill">Self-supervised learning</span>
+                <span class="pill">Time-series modeling</span>
+                <span class="pill">Probabilistic inference</span>
+              </div>
+            </div>
+            <div>
+              <p class="text-small"><strong>Tech Stack</strong></p>
+              <div class="pill-row">
+                <span class="pill">Python</span>
+                <span class="pill">PyTorch</span>
+                <span class="pill">TensorFlow</span>
+                <span class="pill">scikit-learn</span>
+                <span class="pill">Hugging Face</span>
+                <span class="pill">NumPy & pandas</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div>
+              <p class="text-small"><strong>Infrastructure & MLOps</strong></p>
+              <div class="pill-row">
+                <span class="pill">HPC (Slurm)</span>
+                <span class="pill">Docker</span>
+                <span class="pill">Git & CI/CD</span>
+                <span class="pill">Cloud (GCP/AWS/Azure)</span>
+              </div>
+            </div>
+            <div>
+              <p class="text-small"><strong>Certifications</strong></p>
+              <div class="pill-row">
+                <span class="pill">Deep Learning Specialization (Andrew Ng)</span>
+                <span class="pill">Machine Learning Specialization</span>
+                <span class="pill">CS230 / CS231n</span>
+                <span class="pill">IBM Data Science</span>
+                <span class="pill">Python for Everybody</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="leadership">
+          <h2 class="section-title">Leadership & Study Abroad Journey</h2>
+          <p class="text-small">
+            I am the founder of <strong>Excellence Scholars</strong>, an international educational
+            initiative promoting excellence scholarships and global study opportunities.
+          </p>
+          <ul class="bullet-list">
+            <li>Managing a community of 3K+ followers (Facebook), 3K+ (LinkedIn),
+                6K YouTube views, and 1K+ WhatsApp members.</li>
+            <li>Developing a web platform centralizing scholarship listings and
+                admission resources for international students.</li>
+            <li>Goal: make world-class education accessible to ambitious students worldwide.</li>
+          </ul>
+          <p class="text-small" style="margin-top: 8px;">
+            My own study-abroad path spans <strong>Togo → Morocco → France</strong>,
+            supported by competitive scholarships at each step. I am now preparing
+            for the next stage: a research-oriented career and PhD opportunities
+            in machine learning for healthcare and neuroscience.
+          </p>
+          <div class="link-row">
+            <a
+              class="link-chip"
+              href="https://excellencescholars.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>🌍</span> Excellence Scholars Website
+            </a>
+            <a
+              class="link-chip"
+              href="https://github.com/Adodo17SOSSOU"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>💻</span> GitHub Profile
+            </a>
+          </div>
+        </div>
+
+        <div class="card" id="contact">
+          <h2 class="section-title">Contact & Languages</h2>
+          <p class="text-small">
+            I welcome inquiries about <strong>research internships, PhD positions,
+            and collaborations</strong> in:
+          </p>
+          <ul class="bullet-list">
+            <li>Deep learning for medical imaging and neuroscience</li>
+            <li>Spatio-temporal and probabilistic modeling</li>
+            <li>Trustworthy and robust AI systems</li>
+          </ul>
+
+          <div style="margin-top: 10px;">
+            <p class="text-small">
+              <strong>Email:</strong>
+              <a href="mailto:apeleteadodosossou9@gmail.com">
+                apeleteadodosossou9@gmail.com
+              </a>
+            </p>
+            <p class="text-small">
+              <strong>Location:</strong> Épinay-sur-Seine, France
+            </p>
+            <p class="text-small">
+              <strong>Languages:</strong> French (native), English (advanced), Spanish (notion)
+            </p>
+          </div>
+
+          <div class="footer">
+            Last updated: <span>2025</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- React + ReactDOM + Babel (for JSX) -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.production.min.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    // In case you later want to add interactive behavior with React.
+    const App = () => null;
+
+    const rootElement = document.getElementById("root");
+    if (rootElement) {
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(<App />);
+    }
+  </script>
+</body>
+</html>
