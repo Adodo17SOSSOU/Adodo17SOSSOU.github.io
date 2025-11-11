@@ -1,29 +1,26 @@
 :root {
-  --text-main: #222222;
-  --text-muted: #666666;
+  --text-main: #222;
+  --text-muted: #666;
   --bg: #fdfdfd;
   --link: #0366d6;
   --max-width: 820px;
 }
 
-/* DARK MODE automatically when user prefers dark */
+/* Dark theme variables */
+html.dark {
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --bg: #0a0a0a;
+  --link: #93c5fd;
+}
+
+/* Respect system preference when no manual toggle is used */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.dark) {
     --text-main: #e5e7eb;
     --text-muted: #9ca3af;
     --bg: #0a0a0a;
     --link: #93c5fd;
-  }
-  body {
-    background: var(--bg);
-    color: var(--text-main);
-  }
-  a:hover {
-    text-decoration: underline;
-    color: #bfdbfe;
-  }
-  .profile-photo {
-    border-color: #444;
   }
 }
 
