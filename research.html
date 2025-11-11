@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Research – Apelete Adodo Sossou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="top-nav-name">Apelete Adodo Sossou</div>
+      <div class="top-nav-sub">
+        Machine Learning Research Engineer · MVA – ENS Paris-Saclay
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="education.html">Education</a>
+        <a href="hobbies.html">Hobbies</a>
+        <a href="cv.pdf">CV (PDF)</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <h2>Research</h2>
+
+      <h3>Current work</h3>
+      <p>
+        <strong>Master’s thesis, Télécom Paris (Institut Polytechnique de Paris)</strong><br />
+        <em>Spatio-Temporal Modeling of Alzheimer’s Disease Progression</em><br />
+        Supervisor: Prof. Pietro Gori
+      </p>
+      <ul>
+        <li>Developing a 3D self-supervised encoder for brain MRI (masked inpainting and contrastive learning).</li>
+        <li>Designing probabilistic longitudinal models (state-space models, Gaussian Processes) to model disease trajectories.</li>
+        <li>Building a normative scoring and subject-level risk prediction framework, with a fully reproducible PyTorch/HPC pipeline (Slurm, bootstrap CI, explainability).</li>
+      </ul>
+
+      <h3>Past research and internships</h3>
+      <p>
+        <strong>Research internship, LaMSN – Université Sorbonne Paris Nord</strong> (2024)<br />
+        Implemented and evaluated model pruning techniques from the literature to improve neural network efficiency and inference time.
+      </p>
+
+      <p>
+        <strong>Research initiation – 3D brain tumor segmentation</strong> (2024)<br />
+        Worked under Prof. Matei Basarab on 3D brain tumor segmentation with dilated FCNs, using class re-balancing and data augmentation, and produced a detailed research report.
+      </p>
+
+      <h3>Selected technical projects</h3>
+      <ul>
+        <li>
+          <strong>Accented English ASR benchmark</strong> – evaluation pipeline for Whisper and Wav2Vec&nbsp;2.0 on French-accented English (Mozilla Common Voice); WER 0.218 vs 0.328 baseline.
+        </li>
+        <li>
+          <strong>Noise-robust ASR</strong> – benchmarking ASR models under synthetic noise; Whisper outperformed Wav2Vec&nbsp;2.0 (WER 0.253 vs 0.414).
+        </li>
+        <li>
+          <strong>Medical domain ASR</strong> – experiments on radiology, pathology and surgery datasets, reaching near-zero WER with Whisper in specialized contexts.
+        </li>
+        <li>
+          <strong>Real-time anomaly detection & forecasting</strong> – pipeline for time-series systems using Z-score detection and ARIMA forecasting with automatic data generation and visualization.
+        </li>
+      </ul>
+
+      <p class="small muted">
+        For code and more details, see my
+        <a href="https://github.com/Adodo17SOSSOU" target="_blank" rel="noreferrer">GitHub profile</a>.
+      </p>
+    </main>
+  </div>
+</body>
+</html>
